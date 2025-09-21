@@ -4,7 +4,8 @@ fibonacci.py
 This module provides a function to compute the n-th Fibonacci number 
 using dynamic programming in O(n) time.
 
-Author: Hassan Hashmi
+Author: 
+  Hassan Hashmi
 """
 from typing import Dict
 
