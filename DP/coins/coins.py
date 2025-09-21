@@ -9,11 +9,13 @@ This module solves two classic dynamic programming problems:
 
 Functions:
 - `min_coins`
+- `min_ignore_none`
 - `how_many_ways`
 
 Author:
   Hassan Hashmi
 """ 
+from collections import defaultdict
 
 def min_coins(coins: list[int], target_sum: int) -> int:
   """
@@ -28,7 +30,7 @@ def min_coins(coins: list[int], target_sum: int) -> int:
 
   Returns
   -------
-  int : None
+  int | None
     The smallest number of coins to make target_sum or None if not possible
     
   Notes
@@ -52,6 +54,22 @@ def min_coins(coins: list[int], target_sum: int) -> int:
   return memo[target_sum]
 
 def min_ignore_none(a, b):
+  """
+  Return the non-none value or minimum of non-none values
+  
+  Parameters
+  ----------
+  a : None or int
+  b : None or int
+  
+  Returns
+  -------
+  int : The non-none value or the minimum between two non-none values
+  
+  Notes
+  -----
+  - Assumes one of a or b is non-none
+  """
   if not a:
     return b
   if not b:
@@ -59,4 +77,26 @@ def min_ignore_none(a, b):
   return min(a, b)
 
 def how_many_ways(coins: list[int], target_sum: int) -> int:
-  return 0
+  """
+  Compute the number of ways to make target sum given coins
+  
+  Parameters
+  ----------
+  coins : list[int]
+          Coin denominations (positive integers)
+  target_sum :  int
+                The goal to sum to
+  
+  Returns
+  -------
+  int : None
+    The number of ways to make target_sum from coins         
+  """
+  memo = defaultdict(int)
+  memo[0] = 1
+  
+  for coin in coins:
+    for i in range(1, target_sum + 1):
+      memo[i] += memo[i - coin]
+      
+  return memo[target_sum]
