@@ -12,9 +12,28 @@ Function:
 Author:
   Hassan Hashmi
 """
-
-def grid_paths() -> int:
+from typing import Dict
+def grid_paths(n: int, m: int) -> int:
   """
   Compute the number of paths to reach the bottom left of a n x m grid
+  
+  Parameters
+  ----------
+  n : int
+      Length of grid
+  m : int 
+      Height of grid
+  
+  Returns
+  -------
+  int : Number of paths possible to reach bottom left of grid
   """
-  return 0
+  memo: Dict[tuple[int, int], int] = {} # n x m size of grid => number of paths to bottom left
+  
+  for i in range(1, n + 1):
+    for j in range(1, m + 1):
+      if i == 1 or j == 1:
+        memo[(i, j)] = 1
+      else:
+        memo[(i, j)] = memo[(i - 1, j)] + memo[(i, j - 1)]
+  return memo[(n, m)]
