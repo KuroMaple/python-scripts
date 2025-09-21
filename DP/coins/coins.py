@@ -1,7 +1,15 @@
 """
 coins.py
 
-This module solves the DP minimum coin problem
+This module solves two classic dynamic programming problems:
+1. **Minimum Coin Problem**: Find the minimum number of coins needed to make 
+      a given target sum
+2. **Coin Change Probelm**: Determine the number of distinct ways to make a 
+      given target sum using a set of coin denominations
+
+Functions:
+- `min_coins`
+- `how_many_ways`
 
 Author:
   Hassan Hashmi
@@ -50,3 +58,5 @@ def min_ignore_none(a, b):
     return a
   return min(a, b)
 
+def how_many_ways(coins: list[int], target_sum: int) -> int:
+  return 0
